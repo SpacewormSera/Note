@@ -1,0 +1,47 @@
+.card {
+  display: grid;
+  grid-template-rows: 4fr 1fr 1fr;
+  height: 250px;
+  width: 200px;
+  margin: 2px;
+  background-color: #FFF;
+  box-shadow:  0 4px 8px 0 rgba(128, 128, 128, 0.945);
+}
+
+.cardImage {
+  width: 100%;
+}
+
+.button {
+  background-color: #55ad58;
+  border: none;
+  outline: none;
+  color: white;
+  text-align: center;
+  /* padding: 4px; */
+  margin: 2px;
+  display: inline-block;
+  
+}
+.button:hover{background-color: #46a549}
+.button:active{
+  border: none;
+  background-color: rgb(175, 251, 74);
+}
+
+.pin{  
+  background-color: rgb(204, 118, 118);
+}
+
+.pin:hover{background-color: #ad5e5e}
+.pin:active{
+  border: none;
+  background-color: rgb(144, 70, 70);
+}
+
+.textArea{
+  outline: none;
+  resize: none;
+  border: none;
+  font-size: 18px;
+}
