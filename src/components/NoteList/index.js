@@ -1,37 +1,39 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Note from '../Note';
 import AddNote from '../AddNote';
+// import { deleteNote } from '../../Redux/actions.js';
 import './index.css';
+// import store from '../../Redux/store';
 
-function NoteList() {
-  const [notes, setNotes] = useState([]);
-  const [noteText, setNoteText] = useState('');
-
-  const addNewNote = (event) => {
-    // console.log('note added');
-    setNotes([...notes,
-    {
-      id: Date.now(),
-      noteText: noteText,
-    }])
-  }
+function NoteList({notes, addNoteText, setNotes, deleteNote, deleteNoteRedux, addNewNote}) { 
 
   const onInputTextChange = (event) => {
+    // const noteToEdit = notes.find(note => note.id === id);
+    // console.log(noteToEdit);
     console.log(event.target.value);
-    setNoteText([...noteText, event.target.value]);
-    console.log(noteText);
   }
-
 
   return (
     <>
-      <div className="noteContainer">{notes.map((item) => (
-        <Note key={item.id} text={item.noteText} addText={onInputTextChange} />
+      <div className="noteContainer">{notes.map((item, index) => (
+        <Note 
+        key={item.id} 
+        noteObj={item} 
+        index={index} 
+        addText={onInputTextChange} 
+        deleteNote={deleteNote} 
+        deleteNoteRedux={deleteNoteRedux}
+        addNoteText={addNoteText} />
       ))}
-        <AddNote add={addNewNote} />
+        <AddNote add={addNewNote} setNotes={setNotes}/>
       </div>
     </>
   )
+}
+
+NoteList.propTypes = {
+  notes: PropTypes.array
 }
 
 export default NoteList;

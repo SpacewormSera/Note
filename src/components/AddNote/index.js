@@ -1,4 +1,4 @@
-import React, { useState, useDispatch } from 'react';
+import React from 'react';
 
 import './index.css';
 

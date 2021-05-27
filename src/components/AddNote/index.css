@@ -11,14 +11,14 @@
 }
 
 .addButton {
-  width: 80px;
+  width: 160px;
   height: 80px;
   border-radius: 18px;
   background-color: #62626231;
   border: 1px solid gray;
   outline: none;
   font-size: large;
-  color: rgb(77, 77, 77);
+  color: rgb(102, 102, 102);
 }
 
 .addButton:hover{background-color: #5353534d}
