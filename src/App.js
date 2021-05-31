@@ -11,6 +11,17 @@ const LOCAL_STORAGE_KEY = 'react-list-notes';
 function App() {
   const [notes, setNotes] = useState([]);
 
+  function changeNoteText(event, id) {
+    // TODO save to local storage
+    setNotes(notes.map(note => {
+      if(note.id === id){
+        note.noteText = event.target.value;
+        console.log('-->', notes)
+      }
+      return note
+    }))
+  }
+
   // get the notes on load
   useEffect(() => {
     const storageNotes = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
@@ -60,7 +71,15 @@ function App() {
     <Provider store={store}>
       <div className="App background">
         <Header />
-        <NoteList notes={notes} addNoteText={addNoteText} setNotes={setNotes} deleteNote={deleteNote} addNewNote={addNewNote} deleteNoteRedux={deleteNoteRedux}/>
+        <NoteList 
+        notes={notes} 
+        addNoteText={addNoteText} 
+        setNotes={setNotes} 
+        deleteNote={deleteNote} 
+        addNewNote={addNewNote} 
+        deleteNoteRedux={deleteNoteRedux}
+        changeNoteText={changeNoteText}
+        />
       </div>
       {/* <WindowResise /> */}
     </Provider >

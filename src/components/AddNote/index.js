@@ -8,7 +8,7 @@ function AddNote({add}) {
   return (
     <>
       <div className="addCard">
-        <button type="button" className="addButton" onClick={add}>Add</button>
+        <button type="button" className="addButton" onClick={add}>ADD</button>
       </div>
     </>
   );
