@@ -12,17 +12,16 @@ function App() {
   const [notes, setNotes] = useState([]);
 
   function changeNoteText(event, id) {
-    // TODO save to local storage
     setNotes(notes.map(note => {
       if(note.id === id){
         note.noteText = event.target.value;
-        console.log('-->', notes)
+        console.log('-->', notes);
       }
       return note
-    }))
+    }));
   }
 
-  // get the notes on load
+  // get notes on page load
   useEffect(() => {
     const storageNotes = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
     if(storageNotes){
@@ -32,22 +31,10 @@ function App() {
     console.log('notes get item local effect');
   }, []);
 
+  // save notes on each change
   useEffect(() => {
-    // const storageNotes = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(notes));
-    console.log('notes set item from local storage effect');
   }, [notes]);
-
-  function addNoteText(id){
-    console.log('addnotetext');
-    // setNotes(
-      // notes.map(note=>{
-        // if(note.id === id){
-        //   note.noteText = 'oops'
-        // }
-      // })
-    // )
-  }
 
   const addNewNote = () => {
     setNotes([...notes,
@@ -55,8 +42,20 @@ function App() {
       id: Date.now(),
       noteText: '',
       tags: [''],
-    }])
-    console.log(notes);
+    }]);
+  }
+
+  function addTag(tag, id){
+    setNotes(notes.map(note=>{
+      if(note.id === id){
+        // console.log('addTag: ', tag);
+        note.tags = tag[0]
+
+      }
+      console.log('note: ', note);
+      return note;
+    }))
+    // console.log('tag added to note: ' + id);
   }
 
   const deleteNote = (id) => {
@@ -73,10 +72,10 @@ function App() {
         <Header />
         <NoteList 
         notes={notes} 
-        addNoteText={addNoteText} 
         setNotes={setNotes} 
         deleteNote={deleteNote} 
         addNewNote={addNewNote} 
+        addTag={addTag}
         deleteNoteRedux={deleteNoteRedux}
         changeNoteText={changeNoteText}
         />

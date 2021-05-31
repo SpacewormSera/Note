@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import PropTypes from "prop-types";
 import "./index.css";
 
 function Note({note, index, deleteNote, tags,  addTag,  changeNoteText}) {
 // const [expressApi, setExpressApi] = useState({});
-
+const [tagValue, setTagValue] = useState(['']);
   function apiGet() {
     fetch("http://localhost:3003/testapi")
       .then((res) => {
@@ -15,35 +15,38 @@ function Note({note, index, deleteNote, tags,  addTag,  changeNoteText}) {
       });
   }
 
+  // onl
+  function submitHandler(value){
+    if(value){
+      addTag(value, note.id);
+      // console.log('submitHandler: ', value);
+    }
+  }
   return (
     <>
       <div className="card">
-        <textarea
-          onClick={() => {
-            // console.log(index);
-          }}
-          onChange={(event) => {
-            changeNoteText(event, note.id);
-          }}
-          onBlur={(event) => {
-            console.log(event);
-          }}
+        <textarea          
+          onChange={event => {changeNoteText(event, note.id)}}
           className="textArea"
           placeholder="Type here"
           value={note.noteText}
         />
         <div className="tagContainer">
           <div>
-            <input
-              onChange={(event) => {
-                console.log(event.target.value);
-              }}
-            />
-            <button type="button" onClick={addTag}>
+            <form
+              onChange={(event) => {setTagValue([event.target.value])}}
+              onSubmit={event=>{ 
+                event.preventDefault();
+                //===========================================================================================
+                submitHandler(tagValue);
+              }}>
+              <input value={tagValue} onChange={event=>{setTagValue(event.target.value)}}/>
+            <button type="submit" onClick={(event)=>addTag(event, note.id)}>
               Add
             </button>
+              </form>
           </div>
-          <div className="tagArea">tags here </div>
+          <div className="tagArea" >tags here {note.tags} </div>
         </div>
         <button type="button" className="button pin" onClick={() => apiGet()}>
           Pin
@@ -65,6 +68,7 @@ function Note({note, index, deleteNote, tags,  addTag,  changeNoteText}) {
 Note.propTypes = {
   note: PropTypes.object.isRequired,
   index: PropTypes.number,
+  addTag: PropTypes.func.isRequired
 };
 
 export default Note;
