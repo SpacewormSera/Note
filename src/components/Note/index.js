@@ -1,27 +1,30 @@
 import React, {useState} from "react";
 import PropTypes from "prop-types";
+import Tag from '../Tag'
 import "./index.css";
 
-function Note({note, index, deleteNote, tags,  addTag,  changeNoteText}) {
+function Note({note, deleteNote, addTag, changeNoteText}) {
 // const [expressApi, setExpressApi] = useState({});
-const [tagValue, setTagValue] = useState(['']);
+const [tagValue, setTagValue] = useState('');
   function apiGet() {
-    fetch("http://localhost:3003/testapi")
-      .then((res) => {
-        res.text();
-      })
-      .then((data) => {
-        console.log("data>> ", data);
-      });
+    // fetch("http://localhost:3003/testapi")
+    //   .then((res) => {
+    //     res.text();
+    //   })
+    //   .then((data) => {
+    //     console.log("data>> ", data);
+    //   });
+    console.log('pinned');
   }
 
-  // onl
-  function submitHandler(value){
-    if(value){
-      addTag(value, note.id);
-      // console.log('submitHandler: ', value);
+  function submitHandler(event){
+    event.preventDefault();
+    if(tagValue){
+      addTag(tagValue, note.id);
     }
+    setTagValue('');
   }
+
   return (
     <>
       <div className="card">
@@ -31,22 +34,24 @@ const [tagValue, setTagValue] = useState(['']);
           placeholder="Type here"
           value={note.noteText}
         />
+        {/* ============================== tag container ============================== */}
         <div className="tagContainer">
           <div>
             <form
-              onChange={(event) => {setTagValue([event.target.value])}}
-              onSubmit={event=>{ 
-                event.preventDefault();
-                //===========================================================================================
-                submitHandler(tagValue);
-              }}>
-              <input value={tagValue} onChange={event=>{setTagValue(event.target.value)}}/>
-            <button type="submit" onClick={(event)=>addTag(event, note.id)}>
-              Add
-            </button>
-              </form>
+              onSubmit={submitHandler}>
+              <input value={tagValue} onChange={event=>setTagValue(event.target.value)}/>
+              <button type="submit" >
+                Add
+              </button>
+            </form>
           </div>
-          <div className="tagArea" >tags here {note.tags} </div>
+          <div className="tagArea">{   //TODO correct if statement
+           note.tags.map(tag=>(
+           <Tag tag={tag} key={tag.id}/> 
+           ))  
+              
+        }          
+          </div>          
         </div>
         <button type="button" className="button pin" onClick={() => apiGet()}>
           Pin

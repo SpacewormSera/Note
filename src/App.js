@@ -26,9 +26,8 @@ function App() {
     const storageNotes = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
     if(storageNotes){
       setNotes(storageNotes);
-      console.log(storageNotes);
     }
-    console.log('notes get item local effect');
+    console.log('notes get item local effect: ', storageNotes);
   }, []);
 
   // save notes on each change
@@ -41,15 +40,18 @@ function App() {
     {
       id: Date.now(),
       noteText: '',
-      tags: [''],
+      tags: [],
     }]);
   }
 
   function addTag(tag, id){
+    console.log('tag app: ', tag)
+    const newTag = {text: tag, id:Date.now()}
     setNotes(notes.map(note=>{
       if(note.id === id){
         // console.log('addTag: ', tag);
-        note.tags = tag[0]
+
+        note.tags.push(newTag);
 
       }
       console.log('note: ', note);

@@ -14,10 +14,10 @@ function NoteList({  notes,  addNoteText, addTag, setNotes,  deleteNote,  delete
   return (
     <>
       <div className="noteContainer">
-        {notes.map((item, index) => (
+        {notes.map((note, index) => (
           <Note
-            key={item.id}
-            note={item}
+            key={note.id}
+            note={note}
             index={index}
             addText={onInputTextChange}
             addTag={addTag}
