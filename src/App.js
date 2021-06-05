@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {Provider} from 'react-redux';
 import NoteList from '../src/components/NoteList';
 // import WindowResise from '../src/components/WindowResise';
+import { Context } from './context'
 import './App.css';
 import Header from './components/Header';
 import store from './Redux/store';
@@ -11,7 +12,7 @@ const LOCAL_STORAGE_KEY = 'react-list-notes';
 function App() {
   const [notes, setNotes] = useState([]);
 
-  function changeNoteText(event, id) {
+  const changeNoteText = (event, id)=> {
     setNotes(notes.map(note => {
       if(note.id === id){
         note.noteText = event.target.value;
@@ -45,19 +46,21 @@ function App() {
   }
 
   function addTag(tag, id){
-    console.log('tag app: ', tag)
     const newTag = {text: tag, id:Date.now()}
     setNotes(notes.map(note=>{
       if(note.id === id){
-        // console.log('addTag: ', tag);
-
         note.tags.push(newTag);
-
       }
       console.log('note: ', note);
       return note;
     }))
     // console.log('tag added to note: ' + id);
+  }
+
+  const deleteTag = (id)=>{
+    console.log(`tag: ${id} deleted`);      
+      console.log(notes)
+  
   }
 
   const deleteNote = (id) => {
@@ -69,21 +72,23 @@ function App() {
   }
   
   return (
+    <Context.Provider value={{
+      deleteNote, changeNoteText, deleteTag
+    }}>
     <Provider store={store}>
-      <div className="App background">
+      <div className="App">
         <Header />
         <NoteList 
         notes={notes} 
-        setNotes={setNotes} 
-        deleteNote={deleteNote} 
+        setNotes={setNotes}
         addNewNote={addNewNote} 
         addTag={addTag}
         deleteNoteRedux={deleteNoteRedux}
-        changeNoteText={changeNoteText}
         />
       </div>
       {/* <WindowResise /> */}
     </Provider >
+    </Context.Provider>
   );
 }
 

@@ -1,13 +1,14 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import {Context} from '../../context'
 import './index.css'
 
-function Tag({tag, deleteTag}){
-
+function Tag({tag}){
   console.log(tag)
+  const {deleteTag} = useContext(Context);
   return (
   <>
     <div className="tag">{tag.text}
-    <button onClick={deleteTag}>X</button>
+    <button onClick={()=>deleteTag(tag.id)}>X</button>
     </div>
   </>
   )

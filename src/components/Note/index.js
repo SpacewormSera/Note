@@ -1,9 +1,10 @@
-import React, {useState} from "react";
-import PropTypes from "prop-types";
+import React, {useState, useContext} from 'react'
+import {Context} from '../../context'
+import PropTypes from 'prop-types'
 import Tag from '../Tag'
-import "./index.css";
+import './index.css'
 
-function Note({note, deleteNote, addTag, changeNoteText}) {
+function Note({note, addTag}) {
 // const [expressApi, setExpressApi] = useState({});
 const [tagValue, setTagValue] = useState('');
   function apiGet() {
@@ -17,6 +18,7 @@ const [tagValue, setTagValue] = useState('');
     console.log('pinned');
   }
 
+  const {deleteNote, changeNoteText} = useContext(Context);
   function submitHandler(event){
     event.preventDefault();
     if(tagValue){
@@ -48,8 +50,7 @@ const [tagValue, setTagValue] = useState('');
           <div className="tagArea">{   //TODO correct if statement
            note.tags.map(tag=>(
            <Tag tag={tag} key={tag.id}/> 
-           ))  
-              
+           ))                
         }          
           </div>          
         </div>

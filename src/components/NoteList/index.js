@@ -6,7 +6,7 @@ import AddNote from "../AddNote";
 import "./index.css";
 // import store from '../../Redux/store';
 
-function NoteList({  notes,  addNoteText, addTag, setNotes,  deleteNote,  deleteNoteRedux,  addNewNote, changeNoteText}) {
+function NoteList({  notes,  addNoteText, addTag, setNotes, deleteNoteRedux,  addNewNote}) {
   const onInputTextChange = (event) => {
     console.log(event.target.value);
   };
@@ -21,10 +21,9 @@ function NoteList({  notes,  addNoteText, addTag, setNotes,  deleteNote,  delete
             index={index}
             addText={onInputTextChange}
             addTag={addTag}
-            changeNoteText={changeNoteText}
-            deleteNote={deleteNote}
             deleteNoteRedux={deleteNoteRedux}
             addNoteText={addNoteText}
+
           />
         ))}
         <AddNote add={addNewNote} setNotes={setNotes} />
