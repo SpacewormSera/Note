@@ -3,7 +3,6 @@ import {Context} from '../../context'
 import './index.css'
 
 function Tag({tag}){
-  console.log(tag)
   const {deleteTag} = useContext(Context);
   return (
   <>

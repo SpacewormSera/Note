@@ -16,7 +16,6 @@ function App() {
     setNotes(notes.map(note => {
       if(note.id === id){
         note.noteText = event.target.value;
-        console.log('-->', notes);
       }
       return note
     }));
@@ -51,16 +50,15 @@ function App() {
       if(note.id === id){
         note.tags.push(newTag);
       }
-      console.log('note: ', note);
       return note;
     }))
-    // console.log('tag added to note: ' + id);
   }
 
   const deleteTag = (id)=>{
-    console.log(`tag: ${id} deleted`);      
-      console.log(notes)
-  
+    setNotes(notes.map(note=>{
+      note.tags = note.tags.filter(tag=> tag.id !== id)
+      return note;
+    }))
   }
 
   const deleteNote = (id) => {
