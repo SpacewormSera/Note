@@ -1,6 +1,7 @@
 import React, {useContext} from 'react'
+import {connect} from 'react-redux'
 import {Context} from '../../context'
-import './index.css'
+import './index.scss'
 
 function Tag({tag}){
   const {deleteTag} = useContext(Context);
@@ -13,4 +14,4 @@ function Tag({tag}){
   )
 }
 
-export default Tag;
+export default connect(null, null)(Tag);

@@ -1,5 +1,6 @@
-import React from 'react';
-import './index.css';
+import React from 'react'
+import {connect} from 'react-redux'
+import './index.scss'
 
 function Header() {
 
@@ -13,4 +14,4 @@ function Header() {
     </>
   );
 }
-export default Header;
+export default connect(null, null)(Header);

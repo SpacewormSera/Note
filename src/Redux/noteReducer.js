@@ -1,20 +1,15 @@
-import { combineReducers } from 'redux';
-import noteListReducer from './noteListReducer';
+import {ADD_NOTE} from './types'
 
-const initialState = [{ id: 777, text: 'redux is cool' }, { id: 888, text: 'noooo' }];
+const initialState = {notes: [{ id: 777, noteText: 'redux is cool', tags:[] }, { id: 888, noteText: 'noooo', tags:[] }]}
 
-export default function noteReducer(state = initialState, action) {
+
+export const noteReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD_NOTE':
-      return { ...state, text: action.payload }
-    case 'DELETE_NOTE':
-      console.log(state);
-      const newState = state;
-      delete newState['0'];
-      return newState;
+    case ADD_NOTE:
+      return { ...state, notes: [...state.notes, {id: Date.now(), noteText: '', tags:[]}] }
+    case 'DELETE_NOTE':      
+      return {...state, notes: []};
     default:
-      return { ...state }
+      return state
   }
 }
-
-export const rootReducer = combineReducers({ noteListReducer, noteReducer });

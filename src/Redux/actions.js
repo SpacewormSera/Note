@@ -1,12 +1,15 @@
+import {ADD_NOTE, DELETE_NOTE} from './types'
+
 export function addNote() {
+  console.log('-->dispatch action')
   return {
-    type: 'ADD_NOTE',
+    type: ADD_NOTE,
   };
 }
 
 export function deleteNote(noteId) {
   return {
-    type: 'DELETE_NOTE',
+    type: DELETE_NOTE,
     payload: noteId,
   }
 }

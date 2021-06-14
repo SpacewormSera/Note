@@ -1,0 +1,2 @@
+export const ADD_NOTE = 'NOTE/ADDNOTE'
+export const DELETE_NOTE = 'NOTE/DELETENOTE'
