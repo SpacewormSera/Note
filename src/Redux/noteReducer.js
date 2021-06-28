@@ -1,6 +1,6 @@
 import {ADD_NOTE, DELETE_NOTE, SET_TEXT, ADD_TAG, DELETE_TAG} from './types'
 
-const initialState = {notes: [{ id: 777, noteText: 'redux is cool', tags:[] }, { id: 888, noteText: 'noooo', tags:[] }]};
+const initialState = {notes: [{ id: 777, noteText: '', tags:[] }]};
 
 
 export const noteReducer = (state = initialState, action) => {
@@ -31,7 +31,7 @@ export const noteReducer = (state = initialState, action) => {
     
     case DELETE_TAG:
       return {...state, notes: [...state.notes.map(note=>{
-        note.tags.filter(tag=> tag.id !== action.payload.tagId);
+        note.tags=note.tags.filter(tag=>tag.id !== action.payload.tagId);  
         return note;
       })]}
     

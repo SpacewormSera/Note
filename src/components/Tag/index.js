@@ -4,7 +4,6 @@ import {deleteTag} from '../../Redux/actions'
 import './index.scss'
 
 function Tag({tag, deleteTag}){
-  console.log(tag.id)
   return (
   <>
     <div className="tag">{tag.text}
