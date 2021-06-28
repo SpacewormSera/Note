@@ -10,7 +10,7 @@ export const noteReducer = (state = initialState, action) => {
       return { ...state, notes: [...state.notes, {id: Date.now(), noteText: '', tags:[]}] }
 
     case DELETE_NOTE:     
-      return {...state, notes: state.notes.filter(element=>element.id !== action.payload)}
+      return {...state, notes: state.notes.filter(note=>note.id !== action.payload)}
 
     case SET_TEXT:
       console.log(action)
@@ -30,9 +30,8 @@ export const noteReducer = (state = initialState, action) => {
       })]}
     
     case DELETE_TAG:
-        console.log(action.payload.tagId)
       return {...state, notes: [...state.notes.map(note=>{
-        note.tags.filter(tag=> tag.id !== action.payload.id);
+        note.tags.filter(tag=> tag.id !== action.payload.tagId);
         return note;
       })]}
     
