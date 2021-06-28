@@ -1,4 +1,4 @@
-import {ADD_NOTE, DELETE_NOTE, SET_TEXT, ADD_TAG} from './types'
+import {ADD_NOTE, DELETE_NOTE, SET_TEXT, ADD_TAG, DELETE_TAG} from './types'
 
 export function addNote() {
   return {
@@ -24,5 +24,12 @@ export function addTag(tagText, noteId) {
   return {
     type: ADD_TAG,
     payload: {tagText, noteId}
+  }
+}
+
+export function deleteTag(tagId){
+  return {
+    type: DELETE_TAG,
+    payload: tagId
   }
 }

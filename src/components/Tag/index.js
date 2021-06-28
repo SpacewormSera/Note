@@ -1,9 +1,10 @@
-import React, {useContext} from 'react'
-import {Context} from '../../context'
+import React from 'react'
+import {connect} from 'react-redux'
+import {deleteTag} from '../../Redux/actions'
 import './index.scss'
 
-function Tag({tag}){
-  const {deleteTag} = useContext(Context);
+function Tag({tag, deleteTag}){
+  console.log(tag.id)
   return (
   <>
     <div className="tag">{tag.text}
@@ -13,4 +14,7 @@ function Tag({tag}){
   )
 }
 
-export default Tag;
+const mapDispatchToProps = {
+  deleteTag
+}
+export default connect(null, mapDispatchToProps)(Tag);

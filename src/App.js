@@ -30,26 +30,26 @@ function App() {
     }));
   }
 
-  const addTag = (tag, id) => {
-    const newTag = { text: tag, id: Date.now() }
-    setNotes(notes.map(note => {
-      if (note.id === id) {
-        note.tags.push(newTag);
-      }
-      return note;
-    }))
-  }
+  // const addTag = (tag, id) => {
+  //   const newTag = { text: tag, id: Date.now() }
+  //   setNotes(notes.map(note => {
+  //     if (note.id === id) {
+  //       note.tags.push(newTag);
+  //     }
+  //     return note;
+  //   }))
+  // }
 
-  const deleteTag = (id) => {
-    setNotes(notes.map(note => {
-      note.tags = note.tags.filter(tag => tag.id !== id)
-      return note;
-    }))
-  }
+  // const deleteTag = (id) => {
+  //   setNotes(notes.map(note => {
+  //     note.tags = note.tags.filter(tag => tag.id !== id)
+  //     return note;
+  //   }))
+  // }
 
   return (
     <Context.Provider value={{
-      changeNoteText, deleteTag//, addTag
+      changeNoteText
     }}>     
         <div className="App">
           <Header />
