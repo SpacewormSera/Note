@@ -7,7 +7,11 @@ import App from './App'
 import * as serviceWorker from './serviceWorker'
 import {rootReducer} from './Redux/rootReducer'
 
+const LOCAL_STORAGE_KEY = 'react-list-notes';
+
 const store = createStore(rootReducer, compose(window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
+// store.subscribe(localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(store.getState())));
+
 const app = (
   <React.StrictMode>
   <Provider store={store}>

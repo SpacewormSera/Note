@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import NoteList from '../src/components/NoteList';
-// import WindowResise from '../src/components/WindowResise';
 import { Context } from './context'
 import './App.scss';
 import Header from './components/Header';
@@ -17,6 +16,11 @@ function App() {
     }
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(notes));
+    
+  }, [notes]);
+
   const changeNoteText = (event, id) => {
     setNotes(notes.map(note => {
       if (note.id === id) {
@@ -24,27 +28,6 @@ function App() {
       }
       return note;
     }));
-  }
-
-  useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(notes));
-  }, [notes]);
-
-  const addNewNote = () => {
-    setNotes([...notes,
-    {
-      id: Date.now(),
-      noteText: '',
-      tags: [],
-    }]);
-  }
-
-  const deleteNote = (id) => {
-    setNotes(notes.filter(note => note.id !== id));
-  }
-
-  const deleteNoteRedux = (id) => {
-    // store.dispatch(deleteNote(id));
   }
 
   const addTag = (tag, id) => {
@@ -66,18 +49,14 @@ function App() {
 
   return (
     <Context.Provider value={{
-      deleteNote, changeNoteText, deleteTag, addTag
+      changeNoteText, deleteTag//, addTag
     }}>     
         <div className="App">
           <Header />
           <NoteList
-            // notes={notes}
             setNotes={setNotes}
-            addNewNote={addNewNote}
-            deleteNoteRedux={deleteNoteRedux}
           />
-        </div>
-        {/* <WindowResise /> */}     
+        </div>    
     </Context.Provider>
   );
 }

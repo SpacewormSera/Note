@@ -1,7 +1,6 @@
-import {ADD_NOTE, DELETE_NOTE} from './types'
+import {ADD_NOTE, DELETE_NOTE, SET_TEXT, ADD_TAG} from './types'
 
 export function addNote() {
-  console.log('-->dispatch action')
   return {
     type: ADD_NOTE,
   };
@@ -14,9 +13,16 @@ export function deleteNote(noteId) {
   }
 }
 
-export function setText(text) {
+export function setText(text, textId) {
   return {
-    type: 'SET_TEXT',
-    payload: text,
+    type: SET_TEXT,
+    payload: {text, textId}
+  }
+}
+
+export function addTag(tagText, noteId) {
+  return {
+    type: ADD_TAG,
+    payload: {tagText, noteId}
   }
 }

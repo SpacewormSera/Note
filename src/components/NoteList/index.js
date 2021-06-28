@@ -3,13 +3,12 @@ import {connect} from 'react-redux'
 import Note from '../Note'
 import AddNote from '../AddNote'
 import './index.scss'
-// import store from '../../index';
 
-const NoteList = ({notess,setNotes, addNewNote}) => { 
+const NoteList = ({notes,setNotes, addNewNote}) => { 
   return (
     <>
       <div className="noteContainer">
-        {notess.map((note) => (
+        {notes.map((note) => (
           <Note
             key={note.id}
             note={note}
@@ -21,9 +20,8 @@ const NoteList = ({notess,setNotes, addNewNote}) => {
   );
 }
 
-
 const mapStateToProps = state =>{
-  return  {notess: state.notes.notes}
+  return  {notes: state.notes.notes}
 }
 
 export default connect(mapStateToProps, null)(NoteList);

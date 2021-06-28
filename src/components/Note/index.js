@@ -1,11 +1,10 @@
-import React, {useState, useContext} from 'react'
+import React, {useState} from 'react'
 import {connect} from 'react-redux'
-import {Context} from '../../context'
+import {deleteNote, setText, addTag} from '../../Redux/actions'
 import Tag from '../Tag'
 import './index.scss'
 
-function Note({note}) {
-// const [expressApi, setExpressApi] = useState({});
+function Note({note, deleteNote, setText, addTag}) {
 const [tagValue, setTagValue] = useState('');
   function apiGet() {
     // fetch("http://localhost:3003/testapi")
@@ -18,9 +17,7 @@ const [tagValue, setTagValue] = useState('');
     console.log('pinned');
   }
 
-  const {deleteNote, changeNoteText, addTag} = useContext(Context);
-
-  function submitHandler(event){
+  function tagSubmitHandler(event){
     event.preventDefault();
     if(tagValue){
       addTag(tagValue, note.id);      
@@ -31,8 +28,8 @@ const [tagValue, setTagValue] = useState('');
   return (
     <>
       <div className="card">
-        <textarea          
-          onChange={event => {changeNoteText(event, note.id)}}
+        <textarea
+          onChange={event => {setText(event.target.value, note.id)}}
           className="textArea"
           placeholder="Type here"
           value={note.noteText}
@@ -41,7 +38,7 @@ const [tagValue, setTagValue] = useState('');
         <div className="tagContainer">
           <div>
             <form
-              onSubmit={submitHandler}>
+              onSubmit={tagSubmitHandler}>
               <input value={tagValue} placeholder="Add tag" onChange={event=>setTagValue(event.target.value)}/>
               <button type="submit">Add</button>
             </form>
@@ -61,4 +58,12 @@ const [tagValue, setTagValue] = useState('');
   );
 }
 
-export default connect(null, null)(Note);
+const mapDispatchToProps = {
+  deleteNote, setText, addTag
+}
+
+const mapStateToProps = state =>{
+  return  {notes: state.notes.notes}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Note);
