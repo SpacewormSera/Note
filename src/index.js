@@ -1,7 +1,8 @@
 import React from 'react'
 import {render} from 'react-dom'
-import {compose, createStore} from 'redux'
+import {applyMiddleware, compose, createStore} from 'redux'
 import {Provider} from 'react-redux'
+import thunk from 'redux-thunk'
 import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
@@ -9,7 +10,11 @@ import {rootReducer} from './Redux/rootReducer'
 
 const LOCAL_STORAGE_KEY = 'react-list-notes';
 
-const store = createStore(rootReducer, compose(window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
+const store = createStore(rootReducer, compose(
+  applyMiddleware(
+    thunk
+  ),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
 // store.subscribe(localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(store.getState())));
 
 const app = (

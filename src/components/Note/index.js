@@ -39,7 +39,7 @@ const [tagValue, setTagValue] = useState('');
           <div>
             <form
               onSubmit={tagSubmitHandler}>
-              <input value={tagValue} placeholder="Add tag" onChange={event=>setTagValue(event.target.value)}/>
+              <input value={tagValue} placeholder="Add tag (max - 3)" onChange={event=>setTagValue(event.target.value)}/>
               <button type="submit">Add</button>
             </form>
           </div>
