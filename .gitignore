@@ -1,5 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 /.pnp
@@ -18,9 +16,10 @@
 .env.test.local
 .env.production.local
 
+notes.code-workspace
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
 notes.code-workspace
-yarn.lock
