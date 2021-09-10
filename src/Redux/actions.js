@@ -1,4 +1,4 @@
-import {ADD_NOTE, DELETE_NOTE, SET_TEXT, ADD_TAG, DELETE_TAG} from './types'
+import {ADD_NOTE, DELETE_NOTE, SET_TEXT, ADD_TAG, DELETE_TAG, FETCHNOTES} from './types'
 
 export function addNote() {
   return {
@@ -31,5 +31,13 @@ export function deleteTag(tagId){
   return {
     type: DELETE_TAG,
     payload: {tagId}
+  }
+}
+
+export function fetchNotes(){
+  return async dispatch => {
+    const response = await fetch('http://localhost:3003/testapi/notes');
+    const json = await response.json();
+    dispatch({type: FETCHNOTES, payload: json});
   }
 }

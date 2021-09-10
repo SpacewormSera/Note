@@ -1,6 +1,6 @@
-import {ADD_NOTE, DELETE_NOTE, SET_TEXT, ADD_TAG, DELETE_TAG} from './types'
+import {ADD_NOTE, DELETE_NOTE, SET_TEXT, ADD_TAG, DELETE_TAG, FETCHNOTES} from './types'
 
-const initialState = {notes: [{ id: 777, noteText: '', tags:[] }]};
+const initialState = {notes: [{ id: 777, noteText: '', tags:[] }], fetchedNotes:[]};
 
 
 export const noteReducer = (state = initialState, action) => {
@@ -34,6 +34,9 @@ export const noteReducer = (state = initialState, action) => {
         note.tags=note.tags.filter(tag=>tag.id !== action.payload.tagId);  
         return note;
       })]}
+
+      case FETCHNOTES:
+        return {...state, fetchedPosts: action.payload}
     
       default:
       return state;

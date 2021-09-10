@@ -3,11 +3,11 @@ import {connect} from 'react-redux'
 import './index.scss'
 
 function Header() {
-
+  let chr = 'Search';
   return (
     <>
       <div className="header">
-        <div className="link">Search</div>
+        <div className="link">{chr}</div>
         <input></input>
         <button>Find</button>
       </div>

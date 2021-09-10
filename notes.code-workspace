@@ -2,7 +2,18 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "..\\HtmlPractice"
+		},
+		{
+			"path": "..\\jsPractice"
+		},
+		{
+			"path": "..\\canvasPractice"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "HtmlPractice"
+	}
 }
