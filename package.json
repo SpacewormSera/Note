@@ -7,7 +7,9 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "knex": "^1.0.2",
     "node-sass": "^6.0.1",
+    "pg": "^8.7.3",
     "prop-types": "^15.7.2",
     "react": "*",
     "react-dom": "^16.14.0",
@@ -23,7 +25,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "scss": "node-sass --watch scss -o css"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -40,5 +43,14 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {}
+  "resolutions": {
+    "postcss": "^8.2.10",
+    "immer": "^9.0.12"
+  },
+  "devDependencies": {
+    "postcss": "^8.4.6"
+  },
+  "peerDependencies": {
+    "postcss": "^8.0.0"
+  }
 }

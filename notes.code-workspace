@@ -2,15 +2,6 @@
 	"folders": [
 		{
 			"path": "."
-		},
-		{
-			"path": "..\\HtmlPractice"
-		},
-		{
-			"path": "..\\jsPractice"
-		},
-		{
-			"path": "..\\canvasPractice"
 		}
 	],
 	"settings": {

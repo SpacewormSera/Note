@@ -1,9 +1,13 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express')
+const noteController = require('../controller/note')
+const userController = require('../controller/user')
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.json('index', { title: 'Express' });
-});
+const router = express.Router()
 
-module.exports = router;
+router.get('/note', noteController.getAllNotes)
+router.post('/note', noteController.createNote)
+
+router.post('/register', userController.createUser)
+router.post('/login', userController.loginUser)
+
+module.exports = router

@@ -1,0 +1,12 @@
+.header{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr 2fr);
+  background-color: rgba(87, 86, 86, 0.493);
+  min-height: 200px;
+  align-items: center;
+}
+
+.link{
+  color: rgb(19, 18, 18);
+  font-size: 30px;
+}
